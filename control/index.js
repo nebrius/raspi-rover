@@ -43,19 +43,19 @@ gamepad.on('move', function (id, axis, value) {
       x = value;
       break;
     case 1:
-      y = -value;
+      y = value;
       break;
     case 2:
       x = value;
       break;
     case 3:
-      y = -value;
+      y = value;
       break;
     case 4:
-      y = -(value + 1) / 2;
+      y = (value + 1) / 2;
       break;
     case 5:
-      y = (value + 1) / 2;
+      y = -(value + 1) / 2;
       break;
   }
 });
