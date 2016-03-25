@@ -9,7 +9,7 @@
   "author": "Bryan Hughes <bryan@nebri.us>",
   "license": "MIT",
   "dependencies": {
-    "request": "^2.69.0",
-    "gamepad": "git://github.com/cronopio/node-gamepad#nodev4"
+    "gamepad": "git://github.com/cronopio/node-gamepad#nodev4",
+    "request": "^2.69.0"
   }
 }

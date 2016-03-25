@@ -39,6 +39,7 @@ const BACK_LEFT_MOTOR = five.Motor.SHIELD_CONFIGS.ADAFRUIT_V2.M2;
 const BACK_RIGHT_MOTOR = five.Motor.SHIELD_CONFIGS.ADAFRUIT_V2.M3;
 
 const DEAD_ZONE = 0.1;
+const MAX_SPEED = 255;
 
 board.on('ready', () => {
   const frontLeftMotor = new five.Motor(FRONT_LEFT_MOTOR);
@@ -50,7 +51,44 @@ board.on('ready', () => {
   app.use(bodyParser.json());
 
   setInterval(() => {
-    console.log(x, y);
+    if (x === 0 && y === 0) {
+      frontLeftMotor.stop();
+      frontRightMotor.stop();
+      backLeftMotor.stop();
+      backRightMotor.stop();
+      return;
+    }
+    let left;
+    let right;
+    let angle = Math.atan2(y, x) /  Math.PI;
+    if (angle > 0.5) {
+      left = (angle - 0.5) * -4 + 1;
+      right = 1;
+    } else if (angle > 0) {
+      left = 1;
+      right = angle * 4 - 1;
+    } else if (angle > -0.5) {
+      left = angle * 4 + 1;
+      right = -1;
+    } else {
+      left = -1;
+      right = (angle + 0.5) * -4 - 1;
+    }
+    const speed = Math.min(1, Math.sqrt(x * x + y * y));
+    if (left < 0) {
+      frontLeftMotor.reverse(Math.abs(left) * speed * MAX_SPEED);
+      backLeftMotor.reverse(Math.abs(left) * speed * MAX_SPEED);
+    } else {
+      frontLeftMotor.forward(Math.abs(left) * speed * MAX_SPEED);
+      backLeftMotor.forward(Math.abs(left) * speed * MAX_SPEED);
+    }
+    if (right < 0) {
+      frontRightMotor.reverse(Math.abs(right) * speed * MAX_SPEED);
+      backRightMotor.reverse(Math.abs(right) * speed * MAX_SPEED);
+    } else {
+      frontRightMotor.forward(Math.abs(right) * speed * MAX_SPEED);
+      backRightMotor.forward(Math.abs(right) * speed * MAX_SPEED);
+    }
   }, 30);
 
   let x = 0, y = 0;
