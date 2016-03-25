@@ -2,7 +2,7 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Attach",
+			"name": "Bot",
 			"type": "node",
 			"request": "attach",
 			"port": 5858,
@@ -10,8 +10,8 @@
 			"restart": false,
 			"sourceMaps": false,
 			"outDir": null,
-			"localRoot": "${workspaceRoot}",
-			"remoteRoot": "/home/pi/build-demo"
+			"localRoot": "${workspaceRoot}/bot",
+			"remoteRoot": "/home/pi/bot"
 		}
 	]
 }

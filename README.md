@@ -1,6 +1,6 @@
 # Raspi Rover
 
-A little direct controlled Raspberry Pi + Junior Runt Rover bot.
+A little direct controlled Raspberry Pi + Junior Runt Rover bot. Loosely based on code from https://github.com/nebrius/robotsconf2014-sumbot.
 
 # License
 
